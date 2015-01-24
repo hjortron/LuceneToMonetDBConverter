@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="LuceneToMonetDBConverter" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="CustomersDirectory" Type="System.String" Scope="User">
+      <Value Profile="(Default)">F:\tmp\TrackingData</Value>
+    </Setting>
+    <Setting Name="MonetDbConnectionString" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Driver={MonetDB ODBC Driver};HOST=cm-ubuntu;PORT=50000; Database=reportingDB;UID=monetdb; PWD=monetdb</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
