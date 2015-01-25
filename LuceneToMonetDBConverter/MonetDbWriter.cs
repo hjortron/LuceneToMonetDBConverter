@@ -33,12 +33,14 @@ namespace LuceneToMonetDBConverter
             var docs = documents as Document[] ?? documents.ToArray();
             var documentsCount = docs.Count();
             var percent = documentsCount*.01;
-            Console.Write("Copy in progress...");
-            Console.Write("0%");
+            Console.WriteLine("Copy in progress...");
+            var percentageOutput = "0%";
+            Console.Write("Ready: " + percentageOutput);
             var odbcCmd = new OdbcCommand { Connection = monetDbC };
             monetDbC.Open();
             var count = 0;
             var per = 0;
+          
             foreach (var document in docs)
             {
                 try
@@ -54,9 +56,12 @@ namespace LuceneToMonetDBConverter
                 if (!(count > 5*percent)) continue;
                 ++per;
                 count = 0;
-                Console.Clear();
-                Console.WriteLine(per*5+"% ready");
+                Console.SetCursorPosition(Console.CursorLeft - percentageOutput.Length, Console.CursorTop);
+                percentageOutput = per*5 + "%";
+                Console.Write(percentageOutput);
             }
+            Console.SetCursorPosition(Console.CursorLeft - percentageOutput.Length, Console.CursorTop);
+            Console.WriteLine("100%");
             monetDbC.Close();
         }
 

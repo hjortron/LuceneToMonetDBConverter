@@ -14,16 +14,15 @@ namespace LuceneToMonetDBConverter
 
         static void Main(string[] args)
         {
-            var folders = Directory.GetDirectories(Settings.Default.CustomersDirectory)
-                         .Where(folder => folder.Contains("RawData")).ToList();
+            var folders = Directory.GetDirectories(Settings.Default.CustomersDirectory, "RawData", SearchOption.AllDirectories).ToList();
             foreach (var path in folders)
             {
                 Console.WriteLine("Converting " + path);               
                 var reader = new LuceneStorageReader(path);
                 var luceneDocuments = reader.GetByDateRange(StartDate, EndDate).ToList();
-                MonetDbWriter.InsertDocumnetsIntoTable(luceneDocuments);
-                Console.Write("Done");
+                MonetDbWriter.InsertDocumnetsIntoTable(luceneDocuments);               
             }
+            Console.WriteLine("Done");
             Console.ReadKey();
         }
 
